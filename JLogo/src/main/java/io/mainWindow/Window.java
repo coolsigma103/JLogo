@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import io.commandInput.CommandHistory;
 import io.commandInput.CommandInput;
+import io.mainScreen.MainScreen;
 import main.Main;
 
 public class Window extends JFrame {
@@ -14,7 +15,7 @@ public class Window extends JFrame {
 	public Main main;
 	public CommandInput commandInput;
 	public CommandHistory commandHistory;
-	public Window(Main main, CommandInput commandInput, CommandHistory commandHistory) {
+	public Window(Main main, CommandInput commandInput, CommandHistory commandHistory, MainScreen mainScreen) {
 		this.main = main;
 		this.commandInput = commandInput;
 		this.commandHistory = commandHistory;
@@ -27,7 +28,7 @@ public class Window extends JFrame {
 		
 		this.setJMenuBar(menuBar);
 		this.add(commandInput, BorderLayout.SOUTH);
-		this.add(commandHistory, BorderLayout.CENTER);
+		this.add(mainScreen, BorderLayout.CENTER);
 		
 		this.setVisible(true);
 	}
