@@ -1,5 +1,7 @@
 package io;
 
-public class mainScreen {
+import javax.swing.JPanel;
 
+public class mainScreen extends JPanel{
+	
 }
