@@ -5,5 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <name>JLogo</name>
-  <description>.</description>
+  <description>A Logo programming language that's made with Java.</description>
+  
+  <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://mit-license.org/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 </project>
