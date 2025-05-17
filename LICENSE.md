@@ -1,4 +1,4 @@
-# MIT License (MIT)
+
 
 Copyright © 2025 coolsigma103
 
