@@ -1,16 +1,33 @@
 package main;
 
+import java.util.ArrayList;
+
+import compiler.dataType.Function;
+import compiler.dataType.Variable;
+import compiler.parser.MakeParse;
+import compiler.parser.Parse;
+import compiler.parser.ParseList;
+import compiler.token.MakeToken;
+import compiler.token.Token;
 import io.commandInput.CommandHistory;
 import io.commandInput.CommandInput;
+import io.commandInput.CommandWindow;
 import io.mainScreen.MainScreen;
 import io.mainWindow.Window;
 
 public class Main {
 	
+	public String fileName;
+	
+	public ArrayList<Function> functions = new ArrayList<Function>();
+	public ArrayList<Variable> variables = new ArrayList<Variable>();
+	
 	public Window window;
-	public CommandInput commandInput;
 	public MainScreen mainScreen;
+	
 	public CommandHistory commandHistory;
+	public CommandWindow commandWindow;
+	public CommandInput commandInput;
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to JLogo!");
@@ -20,7 +37,8 @@ public class Main {
 	public Main() {
 		mainScreen = new MainScreen(this);
 		commandHistory = new CommandHistory();
-		commandInput = new CommandInput(this, commandHistory);
+		commandWindow = new CommandWindow(this);
+		commandInput = new CommandInput(this, commandHistory, commandWindow);
 		window = new Window(this, commandInput, commandHistory, mainScreen);
 	}
 	
@@ -43,9 +61,12 @@ public class Main {
 	}
 	
 	public String executeCommand(String command) {
-		
+		ArrayList<Token> tokens = MakeToken.makeToken(command);
+		ParseList parseList = MakeParse.makeParse(tokens, functions, variables);
+		for(Parse parse:parseList) {
+			System.out.println(parse.value[0]);
+		}
 		return command;
 	}
-	
 	
 }

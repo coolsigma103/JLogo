@@ -14,11 +14,16 @@ public class CommandInput extends JPanel{
 	JTextField commandField = new JTextField();
 	JButton enterButton = new JButton("Enter");
 	CommandHistory commandHistory;
+	CommandWindow commandWindow;
+	CommandButtons commandButtons;
 	Main main;
 	
-	public CommandInput(Main main, CommandHistory commandHistory) {
+	public CommandInput(Main main, CommandHistory commandHistory, CommandWindow commandWindow) {
 		this.commandHistory = commandHistory;
 		this.main = main;
+		this.commandWindow = commandWindow;
+		
+		commandButtons = new CommandButtons(main, this);
 		this.setLayout(new BorderLayout());
 		
 		commandField.addActionListener(e -> ExecuteCommand());
@@ -29,13 +34,26 @@ public class CommandInput extends JPanel{
 		inputField.add(enterButton, BorderLayout.EAST);
 		this.add(inputField, BorderLayout.SOUTH);
 		
+		this.add(commandButtons, BorderLayout.EAST);
+		
 		this.add(commandHistory.scrollPane, BorderLayout.CENTER);
 		
 	}
 	
 	private void ExecuteCommand() {
-		commandHistory.addText(main.executeCommand(commandField.getText()));
-		commandField.setText("");
+		if(!commandField.getText().isBlank()) {
+			commandHistory.addText(main.executeCommand(commandField.getText()));
+			commandField.setText("");
+		}
+	}
+	
+	public void openCommandWindow() {
+		if(commandWindow.isVisible()) {
+			commandWindow.setVisible(false);
+		}
+		else {
+			commandWindow.setVisible(true);
+		}
 	}
 	
 }
